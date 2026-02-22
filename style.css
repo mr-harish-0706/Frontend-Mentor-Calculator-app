@@ -1,0 +1,293 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Overpass:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  /* Theme 1 - Default */
+  --bg-main: hsl(222, 26%, 31%);
+  --bg-toggle-keypad: hsl(223, 31%, 20%);
+  --bg-screen: hsl(224, 36%, 15%);
+
+  --key-primary-bg: hsl(225, 21%, 49%);
+  --key-primary-shadow: hsl(224, 28%, 35%);
+  --key-primary-hover: hsl(224, 51%, 76%);
+
+  --key-secondary-bg: hsl(6, 63%, 50%);
+  --key-secondary-shadow: hsl(6, 70%, 34%);
+  --key-secondary-hover: hsl(6, 93%, 67%);
+
+  --key-tertiary-bg: hsl(0, 0%, 90%); /* Gray 200 */
+  --key-tertiary-shadow: hsl(28, 16%, 65%);
+  --key-tertiary-hover: hsl(0, 0%, 100%);
+
+  --text-primary: hsl(0, 100%, 100%);
+  --text-secondary: hsl(221, 14%, 31%);
+  --text-tertiary: hsl(0, 0%, 100%);
+  --text-screen: hsl(0, 100%, 100%);
+}
+
+[data-theme="2"] {
+  --bg-main: hsl(0, 0%, 90%);
+  --bg-toggle-keypad: hsl(0, 5%, 81%);
+  --bg-screen: hsl(0, 0%, 93%);
+
+  --key-primary-bg: hsl(185, 42%, 37%);
+  --key-primary-shadow: hsl(185, 58%, 25%);
+  --key-primary-hover: hsl(185, 41%, 56%);
+
+  --key-secondary-bg: hsl(25, 98%, 40%);
+  --key-secondary-shadow: hsl(25, 99%, 27%);
+  --key-secondary-hover: hsl(25, 100%, 61%);
+
+  --key-tertiary-bg: hsl(0, 0%, 90%); /* Grey 200 */
+  --key-tertiary-shadow: hsl(35, 11%, 61%);
+  --key-tertiary-hover: hsl(0, 0%, 100%);
+
+  --text-primary: hsl(60, 10%, 19%);
+  --text-secondary: hsl(60, 10%, 19%);
+  --text-tertiary: hsl(0, 100%, 100%);
+  --text-screen: hsl(60, 10%, 19%);
+}
+
+[data-theme="3"] {
+  --bg-main: hsl(268, 75%, 9%);
+  --bg-toggle-keypad: hsl(268, 71%, 12%);
+  --bg-screen: hsl(268, 71%, 12%);
+
+  --key-primary-bg: hsl(281, 89%, 26%);
+  --key-primary-shadow: hsl(285, 91%, 52%);
+  --key-primary-hover: hsl(285, 64%, 48%);
+
+  --key-secondary-bg: hsl(176, 100%, 44%);
+  --key-secondary-shadow: hsl(177, 92%, 70%);
+  --key-secondary-hover: hsl(177, 100%, 79%);
+
+  --key-tertiary-bg: hsl(268, 47%, 21%);
+  --key-tertiary-shadow: hsl(290, 70%, 36%);
+  --key-tertiary-hover: hsl(267, 54%, 44%);
+
+  --text-primary: hsl(52, 100%, 62%);
+  --text-secondary: hsl(52, 100%, 62%);
+  --text-tertiary: hsl(0, 0%, 100%);
+  --text-screen: hsl(52, 100%, 62%);
+  --text-equal: hsl(198, 20%, 13%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.calculator {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    p {
+      color: var(--text-primary);
+    }
+  }
+
+  .calc {
+    font-size: 30px;
+  }
+
+  .theme-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 25px;
+
+    .theme-text {
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .toggle-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+
+      .theme-labels {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 0 5px;
+        span {
+          font-size: 12px;
+        }
+      }
+
+      .toggle-bar {
+        width: 70px;
+        height: 26px;
+        background-color: var(--bg-toggle-keypad);
+        border-radius: 20px;
+        position: relative;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+      }
+
+      .toggle-ball {
+        width: 16px;
+        height: 16px;
+        background-color: var(--key-secondary-bg);
+        border-radius: 50%;
+        position: absolute;
+        left: 5px;
+        transition:
+          left 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      &[data-theme="1"] .toggle-ball {
+        left: 5px;
+      }
+      &[data-theme="2"] .toggle-ball {
+        left: 27px;
+      }
+      &[data-theme="3"] .toggle-ball {
+        left: 49px;
+      }
+    }
+  }
+}
+
+input {
+  color: var(--text-screen);
+  background-color: var(--bg-screen);
+  width: 100%;
+  height: 100px;
+  border: none;
+  border-radius: 10px;
+  text-align: right;
+  font-size: 48px;
+  padding: 0 30px;
+  caret-color: transparent;
+  font-family: inherit;
+  font-weight: 700;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
+
+.keypad {
+  background-color: var(--bg-toggle-keypad);
+  margin-top: 24px;
+  padding: 30px;
+  width: 100%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  transition: background-color 0.3s ease;
+}
+
+.buttons {
+  color: var(--text-secondary);
+  font-size: 32px;
+  font-family: inherit;
+  font-weight: 700;
+  width: 100%;
+  height: 60px;
+  background-color: var(--key-tertiary-bg);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 4px 0px var(--key-tertiary-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px; /* Alignment fix for the font */
+  transition: background-color 0.2s ease;
+}
+
+.buttons:hover {
+  background-color: var(--key-tertiary-hover);
+}
+
+.reset,
+.delete {
+  background-color: var(--key-primary-bg);
+  color: var(--text-tertiary);
+  font-size: 20px;
+  box-shadow: 0px 4px 0px var(--key-primary-shadow);
+}
+
+.reset:hover,
+.delete:hover {
+  background-color: var(--key-primary-hover);
+}
+
+.reset {
+  grid-column: span 2;
+}
+
+.equal {
+  grid-column: span 2;
+  background-color: var(--key-secondary-bg);
+  color: var(--text-tertiary);
+  font-size: 20px;
+  box-shadow: 0px 4px 0px var(--key-secondary-shadow);
+}
+
+[data-theme="3"] .equal {
+  color: var(--text-equal);
+}
+
+.equal:hover {
+  background-color: var(--key-secondary-hover);
+}
+
+@media (max-width: 500px) {
+  .calculator {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  input {
+    height: 100px;
+    font-size: 40px;
+    padding: 0 20px;
+  }
+
+  .keypad {
+    padding: 24px;
+    gap: 12px;
+  }
+
+  .buttons {
+    height: 60px;
+    font-size: 28px;
+  }
+
+  .reset,
+  .delete,
+  .equal {
+    font-size: 16px;
+  }
+}
