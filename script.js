@@ -1,6 +1,5 @@
 // Theme Switching
 const themeToggle = document.getElementById("theme-toggle");
-const calculator = document.querySelector(".calculator");
 let currentTheme = 1;
 
 themeToggle.addEventListener("click", () => {
